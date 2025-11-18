@@ -1,0 +1,31 @@
+IDEE
+
+Nom : DESKSHOP
+
+Valeur : réactivité, fiabilité, transparence 
+
+Site logo : https://logo.com/logos/artificial-intelligence
+
+Slogan : Votre bureau, prêt à performer
+
+entreprise: SAS, dirigeant président assimilé salarié/protection sociale très bonne/souplesse juridique élevée/facilité d'évolution oui(investisseurs,associés)
+produit/solution/service : vente et installation informatique/bureautique
+
+recherches : sous forme de SWOAT
+
+buisness plan:
+
+rôle: Bastien/
+	  Jaber/
+	  Kevin/
+	  Tiago/
+
+Fiche KBIS:
+
+Devis, facture, bon de commande,calcul de budget:
+
+Diapo de tout créer avant:
+
+Développement d'un site web vitrine   : git init; git add . ; git commit -m ":tada: firstcommit"; git remote add origin https://github.com/GadBast/AP1-DeskShop.git ; git push -u origin main
+
+Référencer le site sur linkedin seo ...
