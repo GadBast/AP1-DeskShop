@@ -1,0 +1,2010 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Présentation DESKSHOP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #f472b6;
+            --neon-blue: #00d4ff;
+            --neon-purple: #bf00ff;
+            --neon-pink: #ff006e;
+            --dark: #0a0a0f;
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--dark);
+            color: white;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .cosmic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(244, 114, 182, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 60%),
+                linear-gradient(180deg, #0a0a0f 0%, #0f0f1a 50%, #0a0a0f 100%);
+        }
+
+        .mesh-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.6;
+            filter: blur(100px);
+        }
+
+        .mesh-gradient .blob {
+            position: absolute;
+            border-radius: 50%;
+            animation: blobMove 25s ease-in-out infinite;
+        }
+
+        .mesh-gradient .blob:nth-child(1) {
+            width: 800px;
+            height: 800px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--primary));
+            top: -400px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+
+        .mesh-gradient .blob:nth-child(2) {
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, var(--neon-purple), var(--secondary));
+            bottom: -300px;
+            right: -100px;
+            animation-delay: -8s;
+        }
+
+        .mesh-gradient .blob:nth-child(3) {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, var(--neon-pink), var(--accent));
+            top: 50%;
+            left: 60%;
+            animation-delay: -16s;
+        }
+
+        .mesh-gradient .blob:nth-child(4) {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #00ff88, #00d4ff);
+            top: 30%;
+            left: 10%;
+            animation-delay: -12s;
+        }
+
+        @keyframes blobMove {
+            0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            25% { transform: translate(100px, -100px) scale(1.1) rotate(90deg); }
+            50% { transform: translate(-50px, 100px) scale(0.9) rotate(180deg); }
+            75% { transform: translate(80px, 50px) scale(1.05) rotate(270deg); }
+        }
+
+        .grid-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 100px 100px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(100px); }
+        }
+
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particleFloat linear infinite;
+        }
+
+        .particle.glow {
+            box-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .floating-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: orbFloat 20s ease-in-out infinite;
+        }
+
+        .orb:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--neon-blue), transparent 70%);
+            top: 10%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+
+        .orb:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--neon-purple), transparent 70%);
+            bottom: 20%;
+            left: 5%;
+            animation-delay: -5s;
+        }
+
+        .orb:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, var(--neon-pink), transparent 70%);
+            top: 60%;
+            right: 20%;
+            animation-delay: -10s;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(30px, -30px) scale(1.1); }
+            50% { transform: translate(-20px, 20px) scale(0.9); }
+            75% { transform: translate(20px, 10px) scale(1.05); }
+        }
+
+        .light-rays {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .ray {
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.03), transparent);
+            animation: rayMove 15s ease-in-out infinite;
+        }
+
+        @keyframes rayMove {
+            0%, 100% { opacity: 0; transform: translateX(0); }
+            50% { opacity: 1; transform: translateX(50px); }
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide.slide-enter {
+            animation: slideEnter 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .slide.slide-exit {
+            animation: slideExit 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideEnter {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) rotateY(-10deg);
+                filter: blur(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotateY(0);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes slideExit {
+            0% {
+                opacity: 1;
+                transform: scale(1) rotateY(0);
+                filter: blur(0);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.8) rotateY(10deg);
+                filter: blur(20px);
+            }
+        }
+
+        .slide-content {
+            max-width: 1300px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            padding: 0.5rem;
+        }
+
+        /* === BACKGROUND LOGO FULLSCREEN === */
+        .bg-logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0.17;
+            z-index: 0;
+            pointer-events: none;
+            filter: grayscale(10%);
+        }
+
+        /* === MAIN LOGO FOR COVER PAGE === */
+        .main-logo {
+            width: clamp(180px, 100vw, 240px);
+            height: auto;
+            margin-bottom: 1.5rem;
+            animation: mainLogoPulse 4s ease-in-out infinite;
+            filter: drop-shadow(0 20px 60px rgba(99, 102, 241, 0.4));
+        }
+
+        @keyframes mainLogoPulse {
+            0%, 100% { 
+                transform: scale(1); 
+                filter: drop-shadow(0 20px 60px rgba(99, 102, 241, 0.4));
+            }
+            50% { 
+                transform: scale(1.03); 
+                filter: drop-shadow(0 30px 80px rgba(99, 102, 241, 0.6));
+            }
+        }
+
+        .logo-glow-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo-glow-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.3), transparent 70%);
+            border-radius: 50%;
+            animation: logoGlowPulse 4s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes logoGlowPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 700;
+            letter-spacing: -3px;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        h1.glitch {
+            animation: glitch 5s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 90%, 100% { transform: translate(0); }
+            91% { transform: translate(-2px, 2px); }
+            92% { transform: translate(2px, -2px); }
+            93% { transform: translate(-2px, -2px); }
+            94% { transform: translate(2px, 2px); }
+        }
+
+        h1::before, h1::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        h1::before {
+            animation: glitchTop 3s infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+            -webkit-clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+        }
+
+        h1::after {
+            animation: glitchBottom 2s infinite;
+            clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+            -webkit-clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+        }
+
+        @keyframes glitchTop {
+            0%, 95%, 100% { transform: translate(0); opacity: 1; }
+            96% { transform: translate(-3px, 0); opacity: 0.8; }
+            97% { transform: translate(3px, 0); opacity: 0.8; }
+        }
+
+        @keyframes glitchBottom {
+            0%, 93%, 100% { transform: translate(0); opacity: 1; }
+            94% { transform: translate(3px, 0); opacity: 0.8; }
+            95% { transform: translate(-3px, 0); opacity: 0.8; }
+        }
+
+        .mega-gradient {
+            background: linear-gradient(
+                135deg,
+                #667eea 0%,
+                #764ba2 20%,
+                #f093fb 40%,
+                #00d4ff 60%,
+                #00ff88 80%,
+                #667eea 100%
+            );
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: megaGradient 8s ease infinite;
+        }
+
+        @keyframes megaGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .neon-text {
+            text-shadow: 
+                0 0 10px var(--neon-blue),
+                0 0 20px var(--neon-blue),
+                0 0 40px var(--neon-blue),
+                0 0 80px var(--neon-purple);
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        h3 {
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+            line-height: 1.5;
+            margin-bottom: 0.4rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 300;
+        }
+
+        .reveal-text {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: revealText 0.8s ease forwards;
+        }
+
+        .reveal-text:nth-child(1) { animation-delay: 0.1s; }
+        .reveal-text:nth-child(2) { animation-delay: 0.2s; }
+        .reveal-text:nth-child(3) { animation-delay: 0.3s; }
+        .reveal-text:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes revealText {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .divider {
+            width: 150px;
+            height: 3px;
+            margin: 0.8rem auto;
+            position: relative;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-pink), var(--neon-blue));
+            background-size: 300% 100%;
+            animation: dividerFlow 2s linear infinite;
+        }
+
+        @keyframes dividerFlow {
+            0% { left: -100%; background-position: 0% 0%; }
+            100% { left: 100%; background-position: 100% 0%; }
+        }
+
+        .logo-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            margin-bottom: 0.5rem;
+            animation: logoPulse 3s ease-in-out infinite;
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 15px 50px rgba(99, 102, 241, 0.5); }
+        }
+
+        .photo-container {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            animation: photoReveal 1s ease forwards;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .photo-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.1));
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .photo-container::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+            border-radius: 18px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        @keyframes photoReveal {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0.8rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            z-index: 2;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .photo-grid .photo-container {
+            height: 180px;
+        }
+
+        .photo-grid .photo-container:nth-child(1) { animation-delay: 0.2s; }
+        .photo-grid .photo-container:nth-child(2) { animation-delay: 0.4s; }
+        .photo-grid .photo-container:nth-child(3) { animation-delay: 0.6s; }
+
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .split-layout .photo-container {
+            height: 250px;
+            animation-delay: 0.3s;
+        }
+
+        .neo-card {
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .neo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(255,255,255,0.1) 0%,
+                transparent 50%,
+                transparent 100%
+            );
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .neo-card:hover::before {
+            opacity: 1;
+        }
+
+        .neo-card::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+            border-radius: 18px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .neo-card:hover::after {
+            opacity: 1;
+        }
+
+        .neo-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .border-card {
+            position: relative;
+            background: var(--glass);
+            border-radius: 16px;
+            padding: 1.2rem;
+            overflow: hidden;
+        }
+
+        .border-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0deg,
+                var(--neon-blue) 60deg,
+                var(--neon-purple) 120deg,
+                var(--neon-pink) 180deg,
+                transparent 240deg
+            );
+            animation: rotateBorder 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .border-card:hover::before {
+            opacity: 1;
+        }
+
+        .border-card::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: var(--dark);
+            border-radius: 14px;
+            z-index: 0;
+        }
+
+        .border-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes rotateBorder {
+            100% { transform: rotate(360deg); }
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .value-box {
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+            animation: cardFloat 0.8s ease forwards;
+            text-align: center;
+        }
+
+        .value-box:nth-child(1) { animation-delay: 0.2s; }
+        .value-box:nth-child(2) { animation-delay: 0.4s; }
+        .value-box:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes cardFloat {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .icon-orb {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            position: relative;
+            animation: iconPulse 3s ease-in-out infinite;
+        }
+
+        .icon-orb::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            border-radius: 17px;
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(8px);
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .service-box {
+            text-align: left;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideInService 0.6s ease forwards;
+        }
+
+        .service-box:nth-child(1) { animation-delay: 0.1s; }
+        .service-box:nth-child(2) { animation-delay: 0.2s; }
+        .service-box:nth-child(3) { animation-delay: 0.3s; }
+        .service-box:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes slideInService {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .service-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+            transition: all 0.4s ease;
+        }
+
+        .service-box:hover .service-icon {
+            transform: rotate(10deg) scale(1.1);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+            position: relative;
+        }
+
+        .step-box {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: stepAppear 0.8s ease forwards;
+        }
+
+        .step-box:nth-child(1) { animation-delay: 0.1s; }
+        .step-box:nth-child(2) { animation-delay: 0.3s; }
+        .step-box:nth-child(3) { animation-delay: 0.5s; }
+        .step-box:nth-child(4) { animation-delay: 0.7s; }
+
+        @keyframes stepAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-number {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0 auto 0.5rem;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+            animation: numberGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes numberGlow {
+            0%, 100% { box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3); }
+            50% { box-shadow: 0 8px 40px rgba(0, 212, 255, 0.6), 0 0 15px rgba(0, 212, 255, 0.4); }
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.6rem;
+            margin-top: 1rem;
+        }
+
+        .advantage-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.6rem 1rem;
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: advantageSlide 0.6s ease forwards;
+            transition: all 0.4s ease;
+        }
+
+        .advantage-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .advantage-item:nth-child(1) { animation-delay: 0.1s; }
+        .advantage-item:nth-child(2) { animation-delay: 0.15s; }
+        .advantage-item:nth-child(3) { animation-delay: 0.2s; }
+        .advantage-item:nth-child(4) { animation-delay: 0.25s; }
+        .advantage-item:nth-child(5) { animation-delay: 0.3s; }
+        .advantage-item:nth-child(6) { animation-delay: 0.35s; }
+
+        @keyframes advantageSlide {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .check-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 5px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: teamAppear 0.6s ease forwards;
+        }
+
+        .team-member:nth-child(1) { animation-delay: 0.1s; }
+        .team-member:nth-child(2) { animation-delay: 0.2s; }
+        .team-member:nth-child(3) { animation-delay: 0.3s; }
+        .team-member:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes teamAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+            animation: avatarFloat 4s ease-in-out infinite;
+            overflow: hidden;
+            position: relative;
+            padding: 3px;
+        }
+
+        .team-avatar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .team-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            position: relative;
+            z-index: 1;
+            border: 3px solid var(--dark);
+        }
+
+        .team-member:nth-child(1) .team-avatar { animation-delay: 0s; }
+        .team-member:nth-child(2) .team-avatar { animation-delay: -1s; }
+        .team-member:nth-child(3) .team-avatar { animation-delay: -2s; }
+        .team-member:nth-child(4) .team-avatar { animation-delay: -3s; }
+
+        @keyframes avatarFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .team-name {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .team-role {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .contact-pill {
+            padding: 0.7rem 1.5rem;
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: pillPop 0.6s ease forwards;
+        }
+
+        .contact-pill:nth-child(1) { animation-delay: 0.2s; }
+        .contact-pill:nth-child(2) { animation-delay: 0.4s; }
+        .contact-pill:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes pillPop {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .contact-pill:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.2);
+        }
+
+        .contact-pill .icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-pill span {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .cta-mega {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            background-size: 200% 200%;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            animation: buttonGradient 3s ease infinite;
+            box-shadow: 
+                0 10px 30px rgba(99, 102, 241, 0.4),
+                0 0 0 0 rgba(99, 102, 241, 0.4);
+            text-decoration: none;
+            margin-top: 1rem;
+        }
+
+        @keyframes buttonGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .cta-mega::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cta-mega:hover::before {
+            left: 100%;
+        }
+
+        .cta-mega:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 20px 50px rgba(99, 102, 241, 0.5),
+                0 0 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .sas-badge {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--neon-blue);
+            margin-top: 0.5rem;
+            animation: badgePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.2); }
+            50% { box-shadow: 0 0 20px 5px rgba(0, 212, 255, 0.1); }
+        }
+
+        .progress-bar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 1001;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+            box-shadow: 0 0 20px var(--neon-blue);
+            transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            z-index: 1000;
+        }
+
+        .indicator-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .indicator-dot::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            transition: border-color 0.4s ease;
+        }
+
+        .indicator-dot.active {
+            background: var(--neon-blue);
+            box-shadow: 0 0 12px var(--neon-blue);
+        }
+
+        .indicator-dot.active::before {
+            border-color: var(--neon-blue);
+        }
+
+        .indicator-dot:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(1.2);
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.3rem;
+            z-index: 1000;
+        }
+
+        .slide-counter .current {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .slide-counter .separator {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.3);
+            margin: 0 0.2rem;
+        }
+
+        .slide-counter .total {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .nav-controls {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.8rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .nav-btn:hover::before {
+            opacity: 1;
+        }
+
+        .nav-btn svg {
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .nav-btn:hover svg {
+            transform: scale(1.2);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .nav-btn:disabled:hover::before {
+            opacity: 0;
+        }
+
+        .tagline-animated {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tagline-word {
+            padding: 0.4rem 1rem;
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: taglineReveal 0.6s ease forwards;
+        }
+
+        .tagline-word:nth-child(1) { animation-delay: 0.4s; }
+        .tagline-word:nth-child(2) { animation-delay: 0.6s; }
+        .tagline-word:nth-child(3) { animation-delay: 0.8s; }
+
+        @keyframes taglineReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slogan {
+            font-style: italic;
+            color: var(--neon-blue);
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            margin-top: 1rem;
+            opacity: 0;
+            animation: sloganAppear 1s ease 0.5s forwards;
+        }
+
+        @keyframes sloganAppear {
+            to { opacity: 1; }
+        }
+
+        .services-comp-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            max-width: 800px;
+            margin: 1rem auto 0;
+        }
+
+        @media (max-width: 1024px) {
+            .slide-indicator {
+                display: none;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .split-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 1rem;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+
+            .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-btn {
+                width: 45px;
+                height: 45px;
+            }
+
+            .photo-grid .photo-container {
+                height: 150px;
+            }
+
+            .team-avatar {
+                width: 70px;
+                height: 70px;
+            }
+
+            .main-logo {
+                width: clamp(150px, 50vw, 250px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cosmic Background -->
+    <div class="cosmic-bg"></div>
+    
+    <!-- Mesh Gradient -->
+    <div class="mesh-gradient">
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+    </div>
+
+    <!-- Grid Lines -->
+    <div class="grid-lines"></div>
+
+    <!-- Floating Orbs -->
+    <div class="floating-orbs">
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <!-- Light Rays -->
+    <div class="light-rays" id="lightRays"></div>
+
+    <!-- Particles -->
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Slide Counter -->
+    <div class="slide-counter">
+        <span class="current" id="currentSlide">01</span>
+        <span class="separator">/</span>
+        <span class="total" id="totalSlides">10</span>
+    </div>
+
+    <!-- Slide Indicator -->
+    <div class="slide-indicator" id="slideIndicator"></div>
+
+    <div class="presentation-container">
+        <!-- Slide 1: Couverture -->
+        <div class="slide active slide-enter" data-slide="0">
+            <!-- Logo en arrière-plan plein écran -->
+        
+            
+            <div class="slide-content" style="text-align: center;">
+                <!-- Logo principal en grand -->
+                <div class="logo-glow-container">
+                    <img src="logo deskshop.png" alt="DESKSHOP Logo" class="main-logo">
+                </div>
+                
+                <!-- Slogan -->
+                <p class="slogan">"Votre bureau, prêt à performer"</p>
+                
+                <div class="divider"></div>
+                
+                <p class="reveal-text" style="font-size: clamp(1rem, 2vw, 1.4rem); color: rgba(255,255,255,0.9);">
+                    Vente et Installation de Matériel Informatique & Bureautique
+                </p>
+                <p class="reveal-text" style="color: rgba(255,255,255,0.6); font-size: clamp(0.8rem, 1.2vw, 0.95rem);">
+                    Votre partenaire de confiance pour équiper vos espaces de travail
+                </p>
+                
+                <div class="tagline-animated">
+                    <span class="tagline-word">Réactivité</span>
+                    <span class="tagline-word">Fiabilité</span>
+                    <span class="tagline-word">Transparence</span>
+                </div>
+                
+                <div class="sas-badge">SAS - Société par Actions Simplifiée</div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Nos Réalisations (PHOTOS) -->
+        <div class="slide" data-slide="1">
+            <div class="slide-content" style="text-align: center;">
+                <h2 class="mega-gradient">Nos Réalisations</h2>
+                <div class="divider"></div>
+                <p style="color: rgba(255,255,255,0.7); margin-bottom: 0.5rem;">Découvrez notre savoir-faire à travers nos installations</p>
+                
+                <div class="photo-grid">
+                    <div class="photo-container">
+                        <img src="07b0ab23d478c02e6b6947e7373d2f81d8c93606.jpg" alt="Bureau professionnel installé" id="photo-bureau">
+                        <div class="photo-label">Bureau professionnel équipé</div>
+                    </div>
+                    
+                    <div class="photo-container">
+                        <img src="5cb71224367f3e98ffc864e3_formations.jpg" alt="Parc informatique entreprise" id="photo-parc">
+                        <div class="photo-label">Parc informatique entreprise</div>
+                    </div>
+                    
+                    <div class="photo-container">
+                        <img src="f85f2d5c6c_50184523_maintenance-informatique-ordinateur.jpg" alt="Maintenance et réparation" id="photo-maintenance">
+                        <div class="photo-label">Expertise technique</div>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: rgba(255,255,255,0.6);">
+                    De l'installation individuelle aux déploiements à grande échelle
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Qui sommes-nous -->
+        <div class="slide" data-slide="2">
+            <div class="slide-content">
+                <div class="border-card">
+                    <h2 class="mega-gradient reveal-text">Qui Sommes-Nous ?</h2>
+                    <div class="divider"></div>
+                    <p class="reveal-text" style="font-size: clamp(0.9rem, 1.4vw, 1.1rem); margin-bottom: 0.8rem;">
+                        DESKSHOP est votre partenaire de confiance pour l'équipement et l'aménagement complet de vos espaces de travail professionnels.
+                    </p>
+                    <p class="reveal-text">
+                        Nous proposons une gamme complète de solutions bureautiques soigneusement sélectionnées et adaptées aux professionnels, aux PME et aux grandes entreprises de tous secteurs d'activité.
+                    </p>
+                    <p class="reveal-text">
+                        Notre expertise de plus d'une décennie nous permet de comprendre parfaitement vos besoins et de vous proposer des solutions sur mesure qui améliorent votre productivité quotidienne.
+                    </p>
+                    <p class="reveal-text">
+                        Avec DESKSHOP, bénéficiez d'un accompagnement personnalisé de A à Z, depuis le conseil initial jusqu'à l'installation finale et le support technique continu.
+                    </p>
+                    <p class="reveal-text" style="margin-top: 0.8rem;">
+                        <strong style="color: var(--neon-blue);">Statut juridique :</strong> SAS avec président assimilé salarié • Protection sociale excellente • Grande souplesse juridique • Facilité d'évolution (investisseurs, associés)
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Notre Équipe -->
+        <div class="slide" data-slide="3">
+            <div class="slide-content" style="text-align: center;">
+                <h2 class="mega-gradient">Notre Équipe</h2>
+                <div class="divider"></div>
+                <p style="color: rgba(255,255,255,0.7); margin-bottom: 0.5rem;">Une équipe passionnée et experte à votre service</p>
+                <div class="team-grid">
+                    <div class="team-member neo-card">
+                        <div class="team-avatar">
+                            <img src="IMG_3523.webp" alt="Thiago">
+                        </div>
+                        <div class="team-name">Thiago</div>
+                        <div class="team-role">Gérant / Président</div>
+                        <p style="font-size: 0.75rem; margin-top: 0.3rem;">Direction stratégique et développement commercial</p>
+                    </div>
+                    <div class="team-member neo-card">
+                        <div class="team-avatar">
+                            <img src="F7F25248-514A-4EE6-B7CF-CE4BE2C87AB9.webp" alt="Kevin">
+                        </div>
+                        <div class="team-name">Kevin</div>
+                        <div class="team-role">Responsable Juridique</div>
+                        <p style="font-size: 0.75rem; margin-top: 0.3rem;">Conformité légale et contrats</p>
+                    </div>
+                    <div class="team-member neo-card">
+                        <div class="team-avatar">
+                            <img src="phoot jaber.jpg" alt="Jaber">
+                        </div>
+                        <div class="team-name">Jaber</div>
+                        <div class="team-role">Développeur Web</div>
+                        <p style="font-size: 0.75rem; margin-top: 0.3rem;">Solutions digitales et site vitrine</p>
+                    </div>
+                    <div class="team-member neo-card">
+                        <div class="team-avatar">
+                            <img src="20251110_113400.webp" alt="Bastien">
+                        </div>
+                        <div class="team-name">Bastien</div>
+                        <div class="team-role">Technicien</div>
+                        <p style="font-size: 0.75rem; margin-top: 0.3rem;">Installation et maintenance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Nos Valeurs -->
+        <div class="slide" data-slide="4">
+            <div class="slide-content" style="text-align: center;">
+                <h2 class="mega-gradient">Nos Valeurs Fondamentales</h2>
+                <div class="divider"></div>
+                <p style="color: rgba(255,255,255,0.7); margin-bottom: 0.5rem;">Ces principes guident chacune de nos actions</p>
+                <div class="values-grid">
+                    <div class="value-box neo-card">
+                        <div class="icon-orb">
+                            <svg width="24" height="24" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <h3>Réactivité</h3>
+                        <p>Réponse rapide à toutes vos demandes et interventions dans les meilleurs délais. Chaque minute compte pour votre activité.</p>
+                    </div>
+                    <div class="value-box neo-card">
+                        <div class="icon-orb">
+                            <svg width="24" height="24" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <h3>Fiabilité</h3>
+                        <p>Matériel de qualité professionnelle rigoureusement sélectionné et installations garanties.</p>
+                    </div>
+                    <div class="value-box neo-card">
+                        <div class="icon-orb">
+                            <svg width="24" height="24" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </div>
+                        <h3>Transparence</h3>
+                        <p>Devis clairs, détaillés et sans frais cachés. Vous savez exactement ce que vous payez.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Nos Services Principaux -->
+        <div class="slide" data-slide="5">
+            <div class="slide-content" style="text-align: center;">
+                <h2 class="mega-gradient">Nos Services Principaux</h2>
+                <div class="divider"></div>
+                <p style="color: rgba(255,255,255,0.7); margin-bottom: 0.5rem;">Une offre complète pour tous vos besoins</p>
+                <div class="services-grid">
+                    <div class="service-box neo-card">
+                        <div class="service-icon">
+                            <svg width="20" height="20" fill="none" stroke="#a78bfa" stroke-width="2" viewBox="0 0 24 24">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                <line x1="8" y1="21" x2="16" y2="21"/>
+                                <line x1="12" y1="17" x2="12" y2="21"/>
+                            </svg>
+                        </div>
+                        <h3>Vente de Matériel</h3>
+                        <p>Ordinateurs, écrans, imprimantes, périphériques et accessoires premium.</p>
+                    </div>
+                    <div class="service-box neo-card">
+                        <div class="service-icon">
+                            <svg width="20" height="20" fill="none" stroke="#a78bfa" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                            </svg>
+                        </div>
+                        <h3>Installation Pro</h3>
+                        <p>Configuration complète par nos techniciens certifiés avec formation incluse.</p>
+                    </div>
+                    <div class="service-box neo-card">
+                        <div class="service-icon">
+                            <svg width="20" height="20" fill="none" stroke="#a78bfa" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            </svg>
+                        </div>
+                        <h3>Aménagement</h3>
+                        <p>Conception d'espaces ergonomiques et fonctionnels sur mesure.</p>
+                    </div>
+                    <div class="service-box neo-card">
+                        <div class="service-icon">
+                            <svg width="20" height="20" fill="none" stroke="#a78bfa" stroke-width="2" viewBox="0 0 24 24">
+                                <polyline points="23 4 23 10 17 10"/>
+                                <polyline points="1 20 1 14 7 14"/>
+                                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                            </svg>
+                        </div>
+                        <h3>Maintenance</h3>
+                        <p>SAV réactif et assistance technique pour la pérennité de vos équipements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Services Complémentaires -->
+        <div class="slide" data-slide="6">
+            <div class="slide-content" style="text-align: center;">
+                <h2 class="mega-gradient">Services Complémentaires</h2>
+                <div class="divider"></div>
+                <p style="color: rgba(255,255,255,0.7); margin-bottom: 0.5rem;">Des solutions étendues pour accompagner votre croissance</p>
+                <div class="services-comp-grid">
+                    <div class="service-box neo-card">
+                        <div class="service-icon">
+                            <svg width="20" height="20" fill="none" stroke="#a78bfa" stroke-width="2" viewBox="0 0 24 24">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                            </svg>
+                        </div>
+                        <h3>Solutions Entreprises</h3>
+                        <p>Offres personnalisées pour PME, ETI et grandes entreprises. Gestion complète de parc informatique, audit, déploiement et migration.</p>
+                    </div>
+                    <div class="service-box neo-card">
+                        <div class="service-icon">
+                            <svg width="20" height="20" fill="none" stroke="#a78bfa" stroke-width="2" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10"/>
+                                <circle cx="12" cy="12" r="6"/>
+                                <circle cx="12" cy="12" r="2"/>
+                            </svg>
+                        </div>
+                        <h3>Conseil Personnalisé</h3>
+                        <p>Analyse de vos besoins actuels et futurs, recommandations d'experts pour optimiser votre investissement et étude de rentabilité.</p>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem; font-size: clamp(0.9rem, 1.3vw, 1.1rem); font-weight: 500; color: rgba(255,255,255,0.9);">
+                    Une approche globale et intégrée pour tous vos besoins bureautiques
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Pourquoi Choisir DESKSHOP -->
+        <div class="slide" data-slide="7">
+            <div class="slide-content">
+                <h2 class="mega-gradient" style="text-align: center;">Pourquoi Choisir DESKSHOP ?</h2>
+                <div class="divider"></div>
+                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 0.5rem;">Les raisons qui font de nous le partenaire idéal</p>
+                <div class="advantages-grid" style="max-width: 900px; margin: 0 auto;">
+                    <div class="advantage-item">
+                        <div class="check-icon">
+                            <svg width="18" height="18" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <p><strong>Expertise reconnue</strong></p>
+                    </div>
+                    <div class="advantage-item">
+                        <div class="check-icon">
+                            <svg width="18" height="18" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <p><strong>Techniciens qualifiés</strong> et certifiés par les grandes marques</p>
+                    </div>
+                    <div class="advantage-item">
+                        <div class="check-icon">
+                            <svg width="18" height="18" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <p><strong>Prix compétitifs</strong> négociés auprès de nos fournisseurs</p>
+                    </div>
+                    <div class="advantage-item">
+                        <div class="check-icon">
+                            <svg width="18" height="18" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <p><strong>Garantie étendue</strong> sur tout le matériel et installations</p>
+                    </div>
+                    <div class="advantage-item">
+                        <div class="check-icon">
+                            <svg width="18" height="18" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <p><strong>Service client</strong> disponible du lundi au samedi</p>
+                    </div>
+                    <div class="advantage-item">
+                        <div class="check-icon">
+                            <svg width="18" height="18" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <p><strong>Livraison rapide</strong> partout en France sous 48-72h</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Notre Processus -->
+        <div class="slide" data-slide="8">
+            <div class="slide-content" style="text-align: center;">
+                <h2 class="mega-gradient">Notre Processus en 4 Étapes</h2>
+                <div class="divider"></div>
+                <p style="color: rgba(255,255,255,0.7); margin-bottom: 0.5rem;">Une méthodologie éprouvée pour garantir le succès de votre projet</p>
+                <div class="steps-container">
+                    <div class="step-box neo-card">
+                        <div class="step-number">1</div>
+                        <h3>Contact Initial</h3>
+                        <p>Vous nous contactez pour présenter votre projet et vos besoins</p>
+                    </div>
+                    <div class="step-box neo-card">
+                        <div class="step-number">2</div>
+                        <h3>Devis Personnalisé</h3>
+                        <p>Devis détaillé et transparent sous 24h avec plusieurs options</p>
+                    </div>
+                    <div class="step-box neo-card">
+                        <div class="step-number">3</div>
+                        <h3>Installation Expert</h3>
+                        <p>Nos techniciens installent et configurent vos équipements</p>
+                    </div>
+                    <div class="step-box neo-card">
+                        <div class="step-number">4</div>
+                        <h3>Suivi Continu</h3>
+                        <p>Maintenance préventive et support technique permanent</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Contact -->
+        <div class="slide" data-slide="9">
+            <!-- Logo en arrière-plan plein écran -->
+          
+            <div class="slide-content" style="text-align: center;">
+                <h2 class="mega-gradient neon-text">Contactez-Nous</h2>
+                <div class="divider"></div>
+                <p style="font-size: clamp(1rem, 1.8vw, 1.3rem); margin-bottom: 0.5rem; color: rgba(255,255,255,0.9);">
+                    Prêt à transformer votre espace de travail ?
+                </p>
+                <p style="color: rgba(255,255,255,0.6); max-width: 600px; margin: 0 auto 1rem; font-size: 0.9rem;">
+                    Notre équipe d'experts est à votre disposition pour répondre à toutes vos questions
+                </p>
+                <div class="contact-grid">
+                    <div class="contact-pill">
+                        <div class="icon">
+                            <svg width="16" height="16" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </div>
+                        <span>contact@deskshop.fr</span>
+                    </div>
+                    <div class="contact-pill">
+                        <div class="icon">
+                            <svg width="16" height="16" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                        </div>
+                        <span>06 99 75 67 81</span>
+                    </div>
+                    <div class="contact-pill">
+                        <div class="icon">
+                            <svg width="16" height="16" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <span>8 Rue Germain Soufflot, 78180 Montigny-le-Bretonneux</span>
+                    </div>
+                </div>
+                <a href="#" class="cta-mega">Demandez votre devis gratuit</a>
+                <p style="margin-top: 0.8rem; font-size: 0.8rem; color: rgba(255,255,255,0.4);">
+                    Réponse garantie sous 24 heures ouvrables - Sans engagement
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6"/>
+            </svg>
+        </button>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <polyline points="9 18 15 12 9 6"/>
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        // Create Particles
+        const particlesContainer = document.getElementById('particles');
+        const colors = ['#00d4ff', '#bf00ff', '#ff006e', '#00ff88', '#6366f1'];
+        
+        for (let i = 0; i < 40; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle' + (Math.random() > 0.7 ? ' glow' : '');
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.width = (Math.random() * 3 + 1) + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+            particle.style.color = particle.style.background;
+            particle.style.animationDuration = (Math.random() * 25 + 20) + 's';
+            particle.style.animationDelay = (Math.random() * 25) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Create Light Rays
+        const lightRaysContainer = document.getElementById('lightRays');
+        for (let i = 0; i < 8; i++) {
+            const ray = document.createElement('div');
+            ray.className = 'ray';
+            ray.style.left = (i * 12.5) + '%';
+            ray.style.animationDelay = (i * 2) + 's';
+            ray.style.animationDuration = (15 + Math.random() * 10) + 's';
+            lightRaysContainer.appendChild(ray);
+        }
+
+        // Slide Management
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const progressBar = document.getElementById('progressBar');
+        const currentSlideEl = document.getElementById('currentSlide');
+        const totalSlidesEl = document.getElementById('totalSlides');
+        const slideIndicator = document.getElementById('slideIndicator');
+
+        // Create indicators
+        totalSlidesEl.textContent = totalSlides.toString().padStart(2, '0');
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'indicator-dot' + (i === 0 ? ' active' : '');
+            dot.onclick = () => goToSlide(i);
+            slideIndicator.appendChild(dot);
+        }
+
+        function updateUI() {
+            progressBar.style.width = ((currentSlide + 1) / totalSlides * 100) + '%';
+            currentSlideEl.textContent = (currentSlide + 1).toString().padStart(2, '0');
+            document.querySelectorAll('.indicator-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function goToSlide(n) {
+            if (n === currentSlide) return;
+            
+            const currentEl = slides[currentSlide];
+            const nextEl = slides[n];
+            
+            currentEl.classList.remove('slide-enter');
+            currentEl.classList.add('slide-exit');
+            
+            setTimeout(() => {
+                currentEl.classList.remove('active', 'slide-exit');
+                nextEl.classList.add('active', 'slide-enter');
+                currentSlide = n;
+                updateUI();
+            }, 500);
+        }
+
+        function changeSlide(direction) {
+            const newSlide = currentSlide + direction;
+            if (newSlide >= 0 && newSlide < totalSlides) {
+                goToSlide(newSlide);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowUp') changeSlide(-1);
+            if (e.key === 'ArrowDown') changeSlide(1);
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                changeSlide(1);
+            }
+            if (e.key === 'Home') goToSlide(0);
+            if (e.key === 'End') goToSlide(totalSlides - 1);
+        });
+
+        // Touch navigation
+        let touchStartX = 0;
+        let touchStartY = 0;
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        });
+        document.addEventListener('touchend', e => {
+            const diffX = touchStartX - e.changedTouches[0].screenX;
+            const diffY = touchStartY - e.changedTouches[0].screenY;
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                changeSlide(diffX > 0 ? 1 : -1);
+            }
+        });
+
+        // Mouse wheel navigation
+        let wheelTimeout;
+        document.addEventListener('wheel', (e) => {
+            clearTimeout(wheelTimeout);
+            wheelTimeout = setTimeout(() => {
+                if (e.deltaY > 30) changeSlide(1);
+                if (e.deltaY < -30) changeSlide(-1);
+            }, 50);
+        }, { passive: true });
+
+        updateUI();
+    </script>
+</body>
+
+</html>
